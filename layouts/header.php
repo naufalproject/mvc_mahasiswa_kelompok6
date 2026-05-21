@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><?= $title ?? 'MVC Mahasiswa'; ?></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<?php if(($title ?? '') != 'Login') : ?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+
+  <div class="container">
+
+    <a class="navbar-brand" href="<?= BASEURL; ?>">
+        MVC Mahasiswa
+    </a>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse"
+     id="navbarNav">
+
+    <ul class="navbar-nav me-auto">
+
+        <li class="nav-item">
+
+          <a class="nav-link"
+             href="<?= BASEURL; ?>">
+
+             Home
+
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+            <a class="nav-link"
+               href="<?= BASEURL; ?>/mahasiswa/index">
+
+                Data Mahasiswa
+
+            </a>
+
+        </li>
+
+        <?php if($_SESSION['user']['role'] == 'admin') : ?>
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="<?= BASEURL; ?>/mahasiswa/create">
+
+                    Tambah Mahasiswa
+
+                </a>
+
+            </li>
+
+        <?php endif; ?>
+
+    </ul>
+
+    <!-- USER LOGIN -->
+    <div class="d-flex align-items-center">
+
+        <span class="text-white me-3">
+
+            <?= $_SESSION['user']['username']; ?>
+            (<?= $_SESSION['user']['role']; ?>)
+
+        </span>
+
+        <a href="<?= BASEURL; ?>/auth/logout"
+           class="btn btn-danger btn-sm">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+</nav>
+
+<?php endif; ?>
